@@ -1,38 +1,100 @@
+:root {
+  --box-size: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .App {
+  max-width: 500px;
+  margin: auto;
+  text-align: center;
+}
+.game-ui {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.board {
+  position: relative;
+  margin: auto;
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.board .board-rows { 
+  border: 1px solid darkslategray;
+}
+.board .board-rows .row {
+  display: block;
+  height: var(--box-size);
+  position: relative;
+  margin: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.board .board-rows .row .box {
+  display: inline-block;
+  position: relative;
+  height: 100%;
+  width: var(--box-size);;
+  margin: 0;
+  border: 1px solid darkslategray;
+  padding: 1px;
+}
+.board .board-rows .row .box.box--crash {
+  border-color: red;
+  border-width: 2px;
+}
+/* .board .board-rows .row:first-child .box {
+  border-top-width: 2px;
+}
+.board .board-rows:last-child .row .box {
+  border-bottom-width: 2px;
+}
+.board .board-rows .row .box:first-child {
+  border-left-width: 2px;
+}
+.board .board-rows .row .box:last-child {
+  border-right-width: 2px;
+} */
+.board .board-rows .row .box.box--food:after {
+  display: block;
+  content:"";
+  background: green;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.board .snake-part{
+  height: var(--box-size);
+  width: var(--box-size);
+  display: inline-block;
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  padding: 2px;
+}
+.board .snake-part::after{
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: darkslategray;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.board button.restart-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  background: white;
+  border: none;
+  box-shadow: 0 3px 3px gray;
+  color: black;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 5px 15px;
 }
